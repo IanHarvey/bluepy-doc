@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The UUID class &mdash; bluepy 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="bluepy 0.1.0 documentation" href="index.html" />
+    <link rel="next" title="The Service class" href="service.html" />
+    <link rel="prev" title="The Peripheral class" href="peripheral.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="service.html" title="The Service class"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="peripheral.html" title="The Peripheral class"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">bluepy 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-uuid-class">
+<h1>The <tt class="docutils literal"><span class="pre">UUID</span></tt> class<a class="headerlink" href="#the-uuid-class" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="constructor">
+<h2>Constructor<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="UUID">
+<tt class="descname">UUID</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#UUID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a <tt class="docutils literal"><span class="pre">UUID</span></tt> object with the given <em>value</em>. This may be:</p>
+<ul class="simple">
+<li>an <cite>int</cite> value in the range 0 to 0xFFFFFFFF</li>
+<li>a <cite>str</cite> value</li>
+<li>another <cite>UUID</cite> object</li>
+<li>any other value which can be converted to hex digits using <tt class="docutils literal"><span class="pre">str()</span></tt></li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="instance-methods">
+<h2>Instance Methods<a class="headerlink" href="#instance-methods" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="getCommonName">
+<tt class="descname">getCommonName</tt><big>(</big><big>)</big><a class="headerlink" href="#getCommonName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns string describing that UUID. If the UUID is one listed
+in <a class="reference internal" href="assignednumbers.html#assignednumbers"><em>Assigned Numbers</em></a> this will be a human-readable name e.g.
+&#8220;Cycling Speed and Cadence&#8221;. Otherwise, it will be a hexadecimal string.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The <tt class="docutils literal"><span class="pre">UUID</span></tt> class</a><ul>
+<li><a class="reference internal" href="#constructor">Constructor</a></li>
+<li><a class="reference internal" href="#instance-methods">Instance Methods</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="peripheral.html"
+                        title="previous chapter">The <tt class="docutils literal"><span class="pre">Peripheral</span></tt> class</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="service.html"
+                        title="next chapter">The <tt class="docutils literal"><span class="pre">Service</span></tt> class</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/uuid.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="service.html" title="The Service class"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="peripheral.html" title="The Peripheral class"
+             >previous</a> |</li>
+        <li><a href="index.html">bluepy 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Ian Harvey.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Peripheral class &mdash; bluepy 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="bluepy 0.1.0 documentation" href="index.html" />
+    <link rel="next" title="The UUID class" href="uuid.html" />
+    <link rel="prev" title="bluepy - a Bluetooth LE interface for Python" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="uuid.html" title="The UUID class"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="bluepy - a Bluetooth LE interface for Python"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">bluepy 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-peripheral-class">
+<span id="peripheral"></span><h1>The <tt class="docutils literal"><span class="pre">Peripheral</span></tt> class<a class="headerlink" href="#the-peripheral-class" title="Permalink to this headline">¶</a></h1>
+<p>Bluepy&#8217;s <tt class="docutils literal"><span class="pre">Peripheral</span></tt> class encapsulates a connection to a Bluetooth LE peripheral. You create a <tt class="docutils literal"><span class="pre">Peripheral</span></tt> object directly by specifying its MAC address; when the connection is established, the services and characteristics offered by that device can be discovered and read or written.</p>
+<div class="section" id="constructor">
+<h2>Constructor<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="Peripheral">
+<tt class="descname">Peripheral</tt><big>(</big><span class="optional">[</span><em>deviceAddress=None</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#Peripheral" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <em>deviceAddress</em> is not <tt class="docutils literal"><span class="pre">None</span></tt>, creates a <tt class="docutils literal"><span class="pre">Peripheral</span></tt> object and makes a connection
+to the device indicated by <em>deviceAddress</em> (which should be a string comprising six hex
+bytes separated by colons, e.g. <tt class="docutils literal"><span class="pre">&quot;11:22:33:ab:cd:ed&quot;</span></tt>).</p>
+<p>If <em>deviceAddress</em> is <tt class="docutils literal"><span class="pre">None</span></tt>, creates an un-connected <tt class="docutils literal"><span class="pre">Peripheral</span></tt> object. You must call the <tt class="docutils literal"><span class="pre">connect()</span></tt> method on this object (passing it a device address) before it will be usable.</p>
+<p>The constructor will throw a <tt class="docutils literal"><span class="pre">BTLEException</span></tt> if connection to the device fails.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="instance-methods">
+<h2>Instance Methods<a class="headerlink" href="#instance-methods" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="connect">
+<tt class="descname">connect</tt><big>(</big><em>deviceAddress</em><big>)</big><a class="headerlink" href="#connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a connection to the device indicated by <em>deviceAddress</em>. You should only call
+this method if the <tt class="docutils literal"><span class="pre">Peripheral</span></tt> is un-connected (i.e. you did not pass a <em>deviceAddress</em>
+to the constructor); a given peripheral object cannot be re-connected once connected.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="disconnect">
+<tt class="descname">disconnect</tt><big>(</big><big>)</big><a class="headerlink" href="#disconnect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drops the connection to the device, and cleans up associated OS resources. Although the
+Python destructor for a <tt class="docutils literal"><span class="pre">Peripheral</span></tt> will attempt to call this method, you should not
+rely on this happening at any particular time. Therefore, always explicitly call
+<tt class="docutils literal"><span class="pre">disconnect()</span></tt> if you have finished communicating with a device.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="getServices">
+<tt class="descname">getServices</tt><big>(</big><big>)</big><a class="headerlink" href="#getServices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of <tt class="docutils literal"><span class="pre">Service</span></tt> objects representing the services offered by the peripheral.
+This will perform Bluetooth service discovery if this has not already been done;
+otherwise it will return a cached list of services immediately.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">getServiceByUUID(uuidVal):</tt></dt>
+<dd><p>Returns an instance of a <tt class="docutils literal"><span class="pre">Service</span></tt> object which has the indicated UUID.
+<tt class="docutils literal"><span class="pre">uuidVal</span></tt> can be a <tt class="docutils literal"><span class="pre">UUID</span></tt> object, or any string or integer which can be
+used to construct a <tt class="docutils literal"><span class="pre">UUID</span></tt> object. The method will return immediately if the
+service was previously discovered (e.g. by <em>getServices()</em>), and will query
+the peripheral otherwise. It raises a <em>BTLEEException</em> if the service is not
+found.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">getCharacteristics(startHnd=1, endHnd=0xFFFF, uuid=None):</tt></dt>
+<dd><p>Returns a list containing <tt class="docutils literal"><span class="pre">Characteristic</span></tt> objects for the peripheral. If no
+arguments are given, will return all characteristics. If <em>startHnd</em> and/or
+<em>endHnd</em> are given, the list is restricted to characteristics whose handles are
+within the given range - note that it&#8217;s usually more convenient to use
+<tt class="docutils literal"><span class="pre">Service.getCharacteristics()</span></tt> to get the characteristics associated with
+a particular service. Alternatively, <em>uuid</em> may be specified to locate a
+characteristic with a particular UUID value. <em>uuid</em> may be any string, integer,
+or <tt class="docutils literal"><span class="pre">UUID</span></tt> type which can be used to construct a <tt class="docutils literal"><span class="pre">UUID</span></tt> object.</p>
+<p>If no matching characteristics are found, returns an empty list.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">getDescriptors(startHnd=1, endHnd=0xFFFF):</tt></dt>
+<dd><p>Returns a list containing <tt class="docutils literal"><span class="pre">Descriptor</span></tt> objects for the peripheral. If no
+arguments are given, will return all descriptors. If <em>startHnd</em> and/or
+<em>endHnd</em> are given, the list is restricted to descriptors whose handles are
+within the given range. Again, it&#8217;s usually more convenient to use
+<tt class="docutils literal"><span class="pre">Service.getDescriptors()</span></tt> to get the descriptors associated with
+a particular service.</p>
+<p>If no matching descriptors are found, returns an empty list.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The <tt class="docutils literal"><span class="pre">Peripheral</span></tt> class</a><ul>
+<li><a class="reference internal" href="#constructor">Constructor</a></li>
+<li><a class="reference internal" href="#instance-methods">Instance Methods</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter"><tt class="docutils literal"><span class="pre">bluepy</span></tt> - a Bluetooth LE interface for Python</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="uuid.html"
+                        title="next chapter">The <tt class="docutils literal"><span class="pre">UUID</span></tt> class</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/peripheral.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="uuid.html" title="The UUID class"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="bluepy - a Bluetooth LE interface for Python"
+             >previous</a> |</li>
+        <li><a href="index.html">bluepy 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Ian Harvey.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
