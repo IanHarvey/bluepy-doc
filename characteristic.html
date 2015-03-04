@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>The Characteristic class &mdash; bluepy 0.1.0 documentation</title>
+    <title>The Characteristic class &mdash; bluepy 0.9.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0',
+        VERSION:     '0.9.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="bluepy 0.1.0 documentation" href="index.html" />
+    <link rel="top" title="bluepy 0.9.0 documentation" href="index.html" />
     <link rel="next" title="The Descriptor class" href="descriptor.html" />
     <link rel="prev" title="The Service class" href="service.html" /> 
   </head>
@@ -40,7 +40,7 @@
         <li class="right" >
           <a href="service.html" title="The Service class"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">bluepy 0.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">bluepy 0.9.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -78,6 +78,27 @@ Python 2.x, and type <cite>bytes</cite> for Python 3.x. Bluetooth LE allows the 
 request the peripheral to send a response to confirm that the data has been received.
 Setting the <em>withResponse</em> parameter to <em>True</em> will make this request. A
 <cite>BTLEException</cite> will be raised if the confirmation process fails.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="supportsRead">
+<tt class="descname">supportsRead</tt><big>(</big><big>)</big><a class="headerlink" href="#supportsRead" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <em>True</em> if the characteristic can be read (as indicated by its properties)
+and <em>False</em> otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="propertiesToString">
+<tt class="descname">propertiesToString</tt><big>(</big><big>)</big><a class="headerlink" href="#propertiesToString" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string describing the characteristic properties (&#8216;READ&#8217;, &#8216;WRITE&#8217;, etc).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="getHandle">
+<tt class="descname">getHandle</tt><big>(</big><big>)</big><a class="headerlink" href="#getHandle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the 16-bit integer value used to identify the characteristic in the
+underlying GATT protocol. This may be useful to distinguish between notifications
+from different characteristics (see <a class="reference internal" href="notifications.html#notifications"><em>Working with notifications</em></a> for further information).</p>
 </dd></dl>
 
 </div>
@@ -138,7 +159,7 @@ Setting the <em>withResponse</em> parameter to <em>True</em> will make this requ
         <li class="right" >
           <a href="service.html" title="The Service class"
              >previous</a> |</li>
-        <li><a href="index.html">bluepy 0.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">bluepy 0.9.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

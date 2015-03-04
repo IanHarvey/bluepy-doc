@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Working with notifications &mdash; bluepy 0.9.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="bluepy 0.9.0 documentation" href="index.html" />
+    <link rel="next" title="Assigned Numbers" href="assignednumbers.html" />
+    <link rel="prev" title="The Descriptor class" href="descriptor.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="assignednumbers.html" title="Assigned Numbers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="descriptor.html" title="The Descriptor class"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">bluepy 0.9.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="working-with-notifications">
+<span id="notifications"></span><h1>Working with notifications<a class="headerlink" href="#working-with-notifications" title="Permalink to this headline">¶</a></h1>
+<p>In <tt class="docutils literal"><span class="pre">bluepy</span></tt>, notifications are processed by creating a &#8220;delegate&#8221; object and
+registering it with the <tt class="docutils literal"><span class="pre">Peripheral</span></tt>. A method in the delegate is called whenever
+a notification is received from the peripheral, as shown below:</p>
+<dl class="function">
+<dt>
+<tt class="descname">handleNotification(cHandle, data):</tt></dt>
+<dd><p>Called when a notification has been received from a <tt class="docutils literal"><span class="pre">Peripheral</span></tt>. Normally
+you will call the peripheral&#8217;s <tt class="docutils literal"><span class="pre">waitForNotifications()</span></tt> method to allow this,
+but note that a Bluetooth LE device may transmit notifications at any time. This
+means that <em>handleNotification()</em> can potentially be called when any BluePy call
+is in progress.</p>
+<p>The <em>cHandle</em> parameter is the GATT &#8216;handle&#8217; for the characteristic which is
+sending the notification. If a peripheral sends notifications for more than one
+characteristic, this may be used to distinguish them. The &#8216;handle&#8217; value can be
+found by calling the <tt class="docutils literal"><span class="pre">getHandle()</span></tt> method of a <tt class="docutils literal"><span class="pre">Characteristic</span></tt> object.</p>
+<p>The <em>data</em> parameter is a <tt class="docutils literal"><span class="pre">str</span></tt> (Python 2.x) or <tt class="docutils literal"><span class="pre">bytes</span></tt> (Python 3.x) value
+containing the notification data. It is recommended you use Python&#8217;s <tt class="docutils literal"><span class="pre">struct</span></tt>
+module to unpack this, to allow portability between language versions.</p>
+</dd></dl>
+
+<p>It is recommended that the class used for the delegate object is derived from
+<tt class="docutils literal"><span class="pre">btle.DefaultDelegate</span></tt>. This will ensure that an appropriate default method
+exists for any future calls which may be added to the delegate interface.</p>
+<div class="section" id="example-code">
+<h2>Example code<a class="headerlink" href="#example-code" title="Permalink to this headline">¶</a></h2>
+<p>Code to receive notifications from a peripheral can follow the outline below:</p>
+<div class="highlight-python"><div class="highlight"><pre>import btle
+
+class MyDelegate(btle.DefaultDelegate):
+    def __init__(self, params):
+        btle.DefaultDelegate.__init__(self)
+        # ... initialise here
+
+    def handleNotification(self, cHandle, data):
+        # ... perhaps check cHandle
+        # ... process &#39;data&#39;
+
+
+# Initialisation  -------
+
+p = btle.Peripheral( address )
+p.setDelegate( MyDelegate(params) )
+
+# Setup to turn notifications on, e.g.
+#   svc = p.getServiceByUUID( service_uuid )
+#   ch = svc.getCharacteristics( char_uuid )[0]
+#   ch.write( setup_data )
+
+# Main loop --------
+
+while True:
+    if p.waitForNotifications(1.0):
+        # handleNotification() was called
+        continue
+
+    print &quot;Waiting...&quot;
+    # Perhaps do something else here
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Working with notifications</a><ul>
+<li><a class="reference internal" href="#example-code">Example code</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="descriptor.html"
+                        title="previous chapter">The <tt class="docutils literal"><span class="pre">Descriptor</span></tt> class</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="assignednumbers.html"
+                        title="next chapter">Assigned Numbers</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/notifications.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="assignednumbers.html" title="Assigned Numbers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="descriptor.html" title="The Descriptor class"
+             >previous</a> |</li>
+        <li><a href="index.html">bluepy 0.9.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Ian Harvey.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

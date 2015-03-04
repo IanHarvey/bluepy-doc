@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>The Peripheral class &mdash; bluepy 0.1.0 documentation</title>
+    <title>The Peripheral class &mdash; bluepy 0.9.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0',
+        VERSION:     '0.9.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="bluepy 0.1.0 documentation" href="index.html" />
+    <link rel="top" title="bluepy 0.9.0 documentation" href="index.html" />
     <link rel="next" title="The UUID class" href="uuid.html" />
     <link rel="prev" title="bluepy - a Bluetooth LE interface for Python" href="index.html" /> 
   </head>
@@ -40,7 +40,7 @@
         <li class="right" >
           <a href="index.html" title="bluepy - a Bluetooth LE interface for Python"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">bluepy 0.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">bluepy 0.9.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -56,11 +56,15 @@
 <h2>Constructor<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="Peripheral">
-<tt class="descname">Peripheral</tt><big>(</big><span class="optional">[</span><em>deviceAddress=None</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#Peripheral" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">Peripheral</tt><big>(</big><span class="optional">[</span><em>deviceAddress=None</em><span class="optional">[</span>, <em>addrType=ADDR_TYPE_PUBLIC</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Peripheral" title="Permalink to this definition">¶</a></dt>
 <dd><p>If <em>deviceAddress</em> is not <tt class="docutils literal"><span class="pre">None</span></tt>, creates a <tt class="docutils literal"><span class="pre">Peripheral</span></tt> object and makes a connection
 to the device indicated by <em>deviceAddress</em> (which should be a string comprising six hex
 bytes separated by colons, e.g. <tt class="docutils literal"><span class="pre">&quot;11:22:33:ab:cd:ed&quot;</span></tt>).</p>
 <p>If <em>deviceAddress</em> is <tt class="docutils literal"><span class="pre">None</span></tt>, creates an un-connected <tt class="docutils literal"><span class="pre">Peripheral</span></tt> object. You must call the <tt class="docutils literal"><span class="pre">connect()</span></tt> method on this object (passing it a device address) before it will be usable.</p>
+<p>The <em>addrType</em> parameter can be used to select between fixed (<tt class="docutils literal"><span class="pre">btle.ADDR_TYPE_PUBLIC</span></tt>)
+and random (<tt class="docutils literal"><span class="pre">btle.ADDR_TYPE_RANDOM</span></tt>) address types, depending on what the target
+peripheral requires. See section 10.8 of the Bluetooth 4.0 specification for more
+details.</p>
 <p>The constructor will throw a <tt class="docutils literal"><span class="pre">BTLEException</span></tt> if connection to the device fails.</p>
 </dd></dl>
 
@@ -129,6 +133,24 @@ a particular service.</p>
 <p>If no matching descriptors are found, returns an empty list.</p>
 </dd></dl>
 
+<dl class="function">
+<dt>
+<tt class="descname">setDelegate(delegate):</tt></dt>
+<dd><p>This stores a reference to a &#8220;delegate&#8221; object, which is called when asynchronous
+events such as Bluetooth notifications occur. This should be a subclass of the
+<tt class="docutils literal"><span class="pre">DefaultDelegate</span></tt> class. See <a class="reference internal" href="notifications.html#notifications"><em>Working with notifications</em></a> for more information.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">waitForNotifications(timeout):</tt></dt>
+<dd><p>Blocks until a notification is received from the peripheral, or until the
+given <em>timeout</em> (in seconds) has elapsed. If a notification is received, the
+delegate object&#8217;s <tt class="docutils literal"><span class="pre">handleNotification()</span></tt> method will be called, and
+<tt class="docutils literal"><span class="pre">waitForNotifications()</span></tt> will then return <tt class="docutils literal"><span class="pre">True</span></tt>.</p>
+<p>If nothing is received before the timeout elapses, this will return <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+</dd></dl>
+
 </div>
 </div>
 
@@ -187,7 +209,7 @@ a particular service.</p>
         <li class="right" >
           <a href="index.html" title="bluepy - a Bluetooth LE interface for Python"
              >previous</a> |</li>
-        <li><a href="index.html">bluepy 0.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">bluepy 0.9.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
