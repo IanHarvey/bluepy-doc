@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>bluepy - a Bluetooth LE interface for Python &mdash; bluepy 0.9.0 documentation</title>
+    <title>bluepy - a Bluetooth LE interface for Python &mdash; bluepy 0.9.11 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.9.0',
+        VERSION:     '0.9.11',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,11 +23,11 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="bluepy 0.9.0 documentation" href="#" />
+    <link rel="top" title="bluepy 0.9.11 documentation" href="#" />
     <link rel="next" title="The Peripheral class" href="peripheral.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -36,46 +36,64 @@
         <li class="right" >
           <a href="peripheral.html" title="The Peripheral class"
              accesskey="N">next</a> |</li>
-        <li><a href="#">bluepy 0.9.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="#">bluepy 0.9.11 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="bluepy-a-bluetooth-le-interface-for-python">
-<h1><tt class="docutils literal"><span class="pre">bluepy</span></tt> - a Bluetooth LE interface for Python<a class="headerlink" href="#bluepy-a-bluetooth-le-interface-for-python" title="Permalink to this headline">¶</a></h1>
-<p><tt class="docutils literal"><span class="pre">bluepy</span></tt> is a Python module which allows communication with Bluetooth Low
+<h1><code class="docutils literal"><span class="pre">bluepy</span></code> - a Bluetooth LE interface for Python<a class="headerlink" href="#bluepy-a-bluetooth-le-interface-for-python" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">bluepy</span></code> is a Python module which allows communication with Bluetooth Low
 Energy devices. The current implementation runs on Linux
 (internally it uses code from the <a class="reference external" href="http://www.bluez.org/">BlueZ project</a>), although it can be ported to other
 platforms.</p>
-<p>To browse the API documentation, it is recommended to start with <a class="reference internal" href="peripheral.html#peripheral"><em>The Peripheral class</em></a>.</p>
+<p>To browse the API documentation, it is recommended to start with <a class="reference internal" href="peripheral.html#peripheral"><span>The Peripheral class</span></a>.</p>
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="peripheral.html">The <tt class="docutils literal"><span class="pre">Peripheral</span></tt> class</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="peripheral.html">The <code class="docutils literal"><span class="pre">Peripheral</span></code> class</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="peripheral.html#constructor">Constructor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="peripheral.html#instance-methods">Instance Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="peripheral.html#properties">Properties</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="uuid.html">The <tt class="docutils literal"><span class="pre">UUID</span></tt> class</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="scanner.html">The <code class="docutils literal"><span class="pre">Scanner</span></code> class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scanner.html#constructor">Constructor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scanner.html#instance-methods">Instance Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scanner.html#sample-code">Sample code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scanentry.html">The <code class="docutils literal"><span class="pre">ScanEntry</span></code> class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scanentry.html#constructor">Constructor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scanentry.html#instance-methods">Instance Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scanentry.html#properties">Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="delegate.html">The <code class="docutils literal"><span class="pre">DefaultDelegate</span></code> class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="delegate.html#constructor">Constructor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delegate.html#instance-methods">Instance Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="uuid.html">The <code class="docutils literal"><span class="pre">UUID</span></code> class</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="uuid.html#constructor">Constructor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uuid.html#instance-methods">Instance Methods</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="service.html">The <tt class="docutils literal"><span class="pre">Service</span></tt> class</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="service.html">The <code class="docutils literal"><span class="pre">Service</span></code> class</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="service.html#constructor">Constructor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="service.html#instance-methods">Instance Methods</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="characteristic.html">The <tt class="docutils literal"><span class="pre">Characteristic</span></tt> class</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="characteristic.html">The <code class="docutils literal"><span class="pre">Characteristic</span></code> class</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="characteristic.html#constructor">Constructor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="characteristic.html#instance-methods">Instance Methods</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="descriptor.html">The <tt class="docutils literal"><span class="pre">Descriptor</span></tt> class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="descriptor.html">The <code class="docutils literal"><span class="pre">Descriptor</span></code> class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notifications.html">Working with notifications</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notifications.html#example-code">Example code</a></li>
 </ul>
@@ -87,9 +105,9 @@ platforms.</p>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
-<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
-<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
 </ul>
 </div>
 
@@ -97,23 +115,25 @@ platforms.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#"><tt class="docutils literal"><span class="pre">bluepy</span></tt> - a Bluetooth LE interface for Python</a></li>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">bluepy</span></code> - a Bluetooth LE interface for Python</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
   <h4>Next topic</h4>
   <p class="topless"><a href="peripheral.html"
-                        title="next chapter">The <tt class="docutils literal"><span class="pre">Peripheral</span></tt> class</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/index.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+                        title="next chapter">The <code class="docutils literal"><span class="pre">Peripheral</span></code> class</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -130,7 +150,7 @@ platforms.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -139,12 +159,12 @@ platforms.</p>
         <li class="right" >
           <a href="peripheral.html" title="The Peripheral class"
              >next</a> |</li>
-        <li><a href="#">bluepy 0.9.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="#">bluepy 0.9.11 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, Ian Harvey.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
     </div>
   </body>
 </html>

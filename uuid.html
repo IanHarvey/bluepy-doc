@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>The UUID class &mdash; bluepy 0.9.0 documentation</title>
+    <title>The UUID class &mdash; bluepy 0.9.11 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.9.0',
+        VERSION:     '0.9.11',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,12 +23,12 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="bluepy 0.9.0 documentation" href="index.html" />
+    <link rel="top" title="bluepy 0.9.11 documentation" href="index.html" />
     <link rel="next" title="The Service class" href="service.html" />
-    <link rel="prev" title="The Peripheral class" href="peripheral.html" /> 
+    <link rel="prev" title="The DefaultDelegate class" href="delegate.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -38,30 +38,30 @@
           <a href="service.html" title="The Service class"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="peripheral.html" title="The Peripheral class"
+          <a href="delegate.html" title="The DefaultDelegate class"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">bluepy 0.9.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">bluepy 0.9.11 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="the-uuid-class">
-<h1>The <tt class="docutils literal"><span class="pre">UUID</span></tt> class<a class="headerlink" href="#the-uuid-class" title="Permalink to this headline">¶</a></h1>
+<h1>The <code class="docutils literal"><span class="pre">UUID</span></code> class<a class="headerlink" href="#the-uuid-class" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="constructor">
 <h2>Constructor<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="UUID">
-<tt class="descname">UUID</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#UUID" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructs a <tt class="docutils literal"><span class="pre">UUID</span></tt> object with the given <em>value</em>. This may be:</p>
+<code class="descname">UUID</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#UUID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a <code class="docutils literal"><span class="pre">UUID</span></code> object with the given <em>value</em>. This may be:</p>
 <ul class="simple">
 <li>an <cite>int</cite> value in the range 0 to 0xFFFFFFFF</li>
 <li>a <cite>str</cite> value</li>
 <li>another <cite>UUID</cite> object</li>
-<li>any other value which can be converted to hex digits using <tt class="docutils literal"><span class="pre">str()</span></tt></li>
+<li>any other value which can be converted to hex digits using <code class="docutils literal"><span class="pre">str()</span></code></li>
 </ul>
 </dd></dl>
 
@@ -70,9 +70,9 @@
 <h2>Instance Methods<a class="headerlink" href="#instance-methods" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="getCommonName">
-<tt class="descname">getCommonName</tt><big>(</big><big>)</big><a class="headerlink" href="#getCommonName" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getCommonName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getCommonName" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns string describing that UUID. If the UUID is one listed
-in <a class="reference internal" href="assignednumbers.html#assignednumbers"><em>Assigned Numbers</em></a> this will be a human-readable name e.g.
+in <a class="reference internal" href="assignednumbers.html#assignednumbers"><span>Assigned Numbers</span></a> this will be a human-readable name e.g.
 &#8220;Cycling Speed and Cadence&#8221;. Otherwise, it will be a hexadecimal string.</p>
 </dd></dl>
 
@@ -83,11 +83,11 @@ in <a class="reference internal" href="assignednumbers.html#assignednumbers"><em
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">The <tt class="docutils literal"><span class="pre">UUID</span></tt> class</a><ul>
+<li><a class="reference internal" href="#">The <code class="docutils literal"><span class="pre">UUID</span></code> class</a><ul>
 <li><a class="reference internal" href="#constructor">Constructor</a></li>
 <li><a class="reference internal" href="#instance-methods">Instance Methods</a></li>
 </ul>
@@ -95,17 +95,19 @@ in <a class="reference internal" href="assignednumbers.html#assignednumbers"><em
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="peripheral.html"
-                        title="previous chapter">The <tt class="docutils literal"><span class="pre">Peripheral</span></tt> class</a></p>
+  <p class="topless"><a href="delegate.html"
+                        title="previous chapter">The <code class="docutils literal"><span class="pre">DefaultDelegate</span></code> class</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="service.html"
-                        title="next chapter">The <tt class="docutils literal"><span class="pre">Service</span></tt> class</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/uuid.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+                        title="next chapter">The <code class="docutils literal"><span class="pre">Service</span></code> class</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/uuid.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -122,7 +124,7 @@ in <a class="reference internal" href="assignednumbers.html#assignednumbers"><em
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -132,14 +134,14 @@ in <a class="reference internal" href="assignednumbers.html#assignednumbers"><em
           <a href="service.html" title="The Service class"
              >next</a> |</li>
         <li class="right" >
-          <a href="peripheral.html" title="The Peripheral class"
+          <a href="delegate.html" title="The DefaultDelegate class"
              >previous</a> |</li>
-        <li><a href="index.html">bluepy 0.9.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">bluepy 0.9.11 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, Ian Harvey.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
     </div>
   </body>
 </html>

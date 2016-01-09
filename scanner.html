@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Scanner class &mdash; bluepy 0.9.11 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.9.11',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="bluepy 0.9.11 documentation" href="index.html" />
+    <link rel="next" title="The ScanEntry class" href="scanentry.html" />
+    <link rel="prev" title="The Peripheral class" href="peripheral.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="scanentry.html" title="The ScanEntry class"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="peripheral.html" title="The Peripheral class"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">bluepy 0.9.11 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-scanner-class">
+<span id="scanner"></span><h1>The <code class="docutils literal"><span class="pre">Scanner</span></code> class<a class="headerlink" href="#the-scanner-class" title="Permalink to this headline">¶</a></h1>
+<p>A <code class="docutils literal"><span class="pre">Scanner</span></code> object is used to scan for LE devices which are broadcasting
+advertising data. In most situations this will give a set of devices which
+are available for connection. (Note, however, that Bluetooth LE devices may
+accept connections without broadcasting advertising data, or may broadcast
+advertising data but may not accept connections).</p>
+<div class="section" id="constructor">
+<h2>Constructor<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="Scanner">
+<code class="descname">Scanner</code><span class="sig-paren">(</span><span class="optional">[</span><em>index=0</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Scanner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and initialises a new scanner object. <em>index</em> identifies the
+Bluetooth interface to use (where 0 is <strong>/dev/hci0</strong> etc). Scanning
+does not start until the <em>start()</em> or <em>scan()</em> methods are called -
+see below for details.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="instance-methods">
+<h2>Instance Methods<a class="headerlink" href="#instance-methods" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="withDelegate">
+<code class="descname">withDelegate</code><span class="sig-paren">(</span><em>delegate</em><span class="sig-paren">)</span><a class="headerlink" href="#withDelegate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores a reference to a <em>delegate</em> object, which receives callbacks
+when broadcasts from devices are received. See the documentation for
+<code class="docutils literal"><span class="pre">DefaultDelegate</span></code> for details.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="scan">
+<code class="descname">scan</code><span class="sig-paren">(</span><span class="optional">[</span><em>timeout = 10</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#scan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scans for devices for the given <em>timeout</em> in seconds. During this
+period, callbacks to the <em>delegate</em> object will be called. When the
+timeout ends, scanning will stop and the method will return a list
+(or a <em>view</em> on Python 3.x) of <code class="docutils literal"><span class="pre">ScanEntry</span></code> objects for all devices
+discovered during that time.</p>
+<p><em>scan()</em> is equivalent to calling the <em>clear()</em>, <em>start()</em>,
+<em>process()</em> and <em>stop()</em> methods in order.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the current set of discovered devices.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="start">
+<code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables reception of advertising broadcasts from peripherals.
+Should be called before calling <em>process()</em>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="process">
+<code class="descname">process</code><span class="sig-paren">(</span><span class="optional">[</span><em>timeout = 10</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Waits for advertising broadcasts and calls the <em>delegate</em> object
+when they are received. Returns after the given <em>timeout</em> period
+in seconds. This may be called multiple times (between calls to
+<em>start()</em> and <em>stop()</em> ).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables reception of advertising broadcasts. Should be called after
+<em>process()</em> has returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="getDevices">
+<code class="descname">getDevices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getDevices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list (a <em>view</em> on Python 3.x) of <code class="docutils literal"><span class="pre">ScanEntry</span></code> objects for
+all devices which have been discovered (since the last <em>clear()</em> call).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="sample-code">
+<h2>Sample code<a class="headerlink" href="#sample-code" title="Permalink to this headline">¶</a></h2>
+<p>Basic code to run a LE device scan follows this example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">btle</span> <span class="kn">import</span> <span class="n">Scanner</span><span class="p">,</span> <span class="n">DefaultDelegate</span>
+
+<span class="k">class</span> <span class="nc">ScanDelegate</span><span class="p">(</span><span class="n">DefaultDelegate</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">DefaultDelegate</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">handleDiscovery</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">isNewDev</span><span class="p">,</span> <span class="n">isNewData</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">isNewDev</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;Discovered device&quot;</span><span class="p">,</span> <span class="n">dev</span><span class="o">.</span><span class="n">addr</span>
+        <span class="k">elif</span> <span class="n">isNewData</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;Received new data from&quot;</span><span class="p">,</span> <span class="n">dev</span><span class="o">.</span><span class="n">addr</span>
+
+<span class="n">devices</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">dev</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Device </span><span class="si">%s</span><span class="s"> (</span><span class="si">%s</span><span class="s">), RSSI=</span><span class="si">%d</span><span class="s"> dB&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dev</span><span class="o">.</span><span class="n">addr</span><span class="p">,</span> <span class="n">dev</span><span class="o">.</span><span class="n">atype</span><span class="p">,</span> <span class="n">dev</span><span class="o">.</span><span class="n">rssi</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">adtype</span><span class="p">,</span> <span class="n">desc</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dev</span><span class="o">.</span><span class="n">getScanData</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">&quot;  </span><span class="si">%s</span><span class="s"> = </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">desc</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See the documentation for <code class="docutils literal"><span class="pre">ScanEntry</span></code> for the information available via the <em>dev</em>
+parameter passed to the delegate.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The <code class="docutils literal"><span class="pre">Scanner</span></code> class</a><ul>
+<li><a class="reference internal" href="#constructor">Constructor</a></li>
+<li><a class="reference internal" href="#instance-methods">Instance Methods</a></li>
+<li><a class="reference internal" href="#sample-code">Sample code</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="peripheral.html"
+                        title="previous chapter">The <code class="docutils literal"><span class="pre">Peripheral</span></code> class</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="scanentry.html"
+                        title="next chapter">The <code class="docutils literal"><span class="pre">ScanEntry</span></code> class</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/scanner.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="scanentry.html" title="The ScanEntry class"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="peripheral.html" title="The Peripheral class"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">bluepy 0.9.11 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014, Ian Harvey.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
+    </div>
+  </body>
+</html>

@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>The Characteristic class &mdash; bluepy 0.9.0 documentation</title>
+    <title>The Characteristic class &mdash; bluepy 0.9.11 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.9.0',
+        VERSION:     '0.9.11',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,12 +23,12 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="bluepy 0.9.0 documentation" href="index.html" />
+    <link rel="top" title="bluepy 0.9.11 documentation" href="index.html" />
     <link rel="next" title="The Descriptor class" href="descriptor.html" />
     <link rel="prev" title="The Service class" href="service.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -40,31 +40,31 @@
         <li class="right" >
           <a href="service.html" title="The Service class"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">bluepy 0.9.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">bluepy 0.9.11 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="the-characteristic-class">
-<span id="characteristic"></span><h1>The <tt class="docutils literal"><span class="pre">Characteristic</span></tt> class<a class="headerlink" href="#the-characteristic-class" title="Permalink to this headline">¶</a></h1>
+<span id="characteristic"></span><h1>The <code class="docutils literal"><span class="pre">Characteristic</span></code> class<a class="headerlink" href="#the-characteristic-class" title="Permalink to this headline">¶</a></h1>
 <p>A Bluetooth LE &#8220;characteristic&#8221; represents a short data item which can be read or
 written. These can be fixed (e.g. a string representing the manufacturer name) or
 change dynamically (such as the current temperature or state of a button). Most
 interaction with Bluetooth LE peripherals is done by reading or writing characteristics.</p>
 <div class="section" id="constructor">
 <h2>Constructor<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h2>
-<p>You should not construct <tt class="docutils literal"><span class="pre">Characteristic</span></tt> objects directly. Instead, use the
-<tt class="docutils literal"><span class="pre">getCharacteristics()</span></tt> method of a connected <tt class="docutils literal"><span class="pre">Peripheral</span></tt> object.</p>
+<p>You should not construct <code class="docutils literal"><span class="pre">Characteristic</span></code> objects directly. Instead, use the
+<code class="docutils literal"><span class="pre">getCharacteristics()</span></code> method of a connected <code class="docutils literal"><span class="pre">Peripheral</span></code> object.</p>
 </div>
 <div class="section" id="instance-methods">
 <h2>Instance Methods<a class="headerlink" href="#instance-methods" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="read">
-<tt class="descname">read</tt><big>(</big><big>)</big><a class="headerlink" href="#read" title="Permalink to this definition">¶</a></dt>
+<code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#read" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads the current value of a characteristic as a string of bytes. For Python 2.x this
 is a value of type <cite>str</cite>, and on Python 3.x this is of type <cite>bytes</cite>. This may be
 used with the <cite>struct</cite> module to extract integer values from the data.</p>
@@ -72,7 +72,7 @@ used with the <cite>struct</cite> module to extract integer values from the data
 
 <dl class="function">
 <dt id="write">
-<tt class="descname">write</tt><big>(</big><em>data</em><span class="optional">[</span>, <em>withResponse=False</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#write" title="Permalink to this definition">¶</a></dt>
+<code class="descname">write</code><span class="sig-paren">(</span><em>data</em><span class="optional">[</span>, <em>withResponse=False</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#write" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes the given <em>data</em> to the characteristic. <em>data</em> should be of type <cite>str</cite> for
 Python 2.x, and type <cite>bytes</cite> for Python 3.x. Bluetooth LE allows the sender to
 request the peripheral to send a response to confirm that the data has been received.
@@ -82,23 +82,23 @@ Setting the <em>withResponse</em> parameter to <em>True</em> will make this requ
 
 <dl class="function">
 <dt id="supportsRead">
-<tt class="descname">supportsRead</tt><big>(</big><big>)</big><a class="headerlink" href="#supportsRead" title="Permalink to this definition">¶</a></dt>
+<code class="descname">supportsRead</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#supportsRead" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns <em>True</em> if the characteristic can be read (as indicated by its properties)
 and <em>False</em> otherwise.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="propertiesToString">
-<tt class="descname">propertiesToString</tt><big>(</big><big>)</big><a class="headerlink" href="#propertiesToString" title="Permalink to this definition">¶</a></dt>
+<code class="descname">propertiesToString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#propertiesToString" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a string describing the characteristic properties (&#8216;READ&#8217;, &#8216;WRITE&#8217;, etc).</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="getHandle">
-<tt class="descname">getHandle</tt><big>(</big><big>)</big><a class="headerlink" href="#getHandle" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getHandle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getHandle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the 16-bit integer value used to identify the characteristic in the
 underlying GATT protocol. This may be useful to distinguish between notifications
-from different characteristics (see <a class="reference internal" href="notifications.html#notifications"><em>Working with notifications</em></a> for further information).</p>
+from different characteristics (see <a class="reference internal" href="notifications.html#notifications"><span>Working with notifications</span></a> for further information).</p>
 </dd></dl>
 
 </div>
@@ -108,11 +108,11 @@ from different characteristics (see <a class="reference internal" href="notifica
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">The <tt class="docutils literal"><span class="pre">Characteristic</span></tt> class</a><ul>
+<li><a class="reference internal" href="#">The <code class="docutils literal"><span class="pre">Characteristic</span></code> class</a><ul>
 <li><a class="reference internal" href="#constructor">Constructor</a></li>
 <li><a class="reference internal" href="#instance-methods">Instance Methods</a></li>
 </ul>
@@ -121,16 +121,18 @@ from different characteristics (see <a class="reference internal" href="notifica
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="service.html"
-                        title="previous chapter">The <tt class="docutils literal"><span class="pre">Service</span></tt> class</a></p>
+                        title="previous chapter">The <code class="docutils literal"><span class="pre">Service</span></code> class</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="descriptor.html"
-                        title="next chapter">The <tt class="docutils literal"><span class="pre">Descriptor</span></tt> class</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/characteristic.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+                        title="next chapter">The <code class="docutils literal"><span class="pre">Descriptor</span></code> class</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/characteristic.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -147,7 +149,7 @@ from different characteristics (see <a class="reference internal" href="notifica
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -159,12 +161,12 @@ from different characteristics (see <a class="reference internal" href="notifica
         <li class="right" >
           <a href="service.html" title="The Service class"
              >previous</a> |</li>
-        <li><a href="index.html">bluepy 0.9.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">bluepy 0.9.11 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, Ian Harvey.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
     </div>
   </body>
 </html>

@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>The Peripheral class &mdash; bluepy 0.9.0 documentation</title>
+    <title>The Peripheral class &mdash; bluepy 0.9.11 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.9.0',
+        VERSION:     '0.9.11',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,49 +23,54 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="bluepy 0.9.0 documentation" href="index.html" />
-    <link rel="next" title="The UUID class" href="uuid.html" />
+    <link rel="top" title="bluepy 0.9.11 documentation" href="index.html" />
+    <link rel="next" title="The Scanner class" href="scanner.html" />
     <link rel="prev" title="bluepy - a Bluetooth LE interface for Python" href="index.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="uuid.html" title="The UUID class"
+          <a href="scanner.html" title="The Scanner class"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="bluepy - a Bluetooth LE interface for Python"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">bluepy 0.9.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">bluepy 0.9.11 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="the-peripheral-class">
-<span id="peripheral"></span><h1>The <tt class="docutils literal"><span class="pre">Peripheral</span></tt> class<a class="headerlink" href="#the-peripheral-class" title="Permalink to this headline">¶</a></h1>
-<p>Bluepy&#8217;s <tt class="docutils literal"><span class="pre">Peripheral</span></tt> class encapsulates a connection to a Bluetooth LE peripheral. You create a <tt class="docutils literal"><span class="pre">Peripheral</span></tt> object directly by specifying its MAC address; when the connection is established, the services and characteristics offered by that device can be discovered and read or written.</p>
+<span id="peripheral"></span><h1>The <code class="docutils literal"><span class="pre">Peripheral</span></code> class<a class="headerlink" href="#the-peripheral-class" title="Permalink to this headline">¶</a></h1>
+<p>Bluepy&#8217;s <code class="docutils literal"><span class="pre">Peripheral</span></code> class encapsulates a connection to a Bluetooth LE peripheral. You create a <code class="docutils literal"><span class="pre">Peripheral</span></code> object directly by specifying its MAC address; when the connection is established, the services and characteristics offered by that device can be discovered and read or written.</p>
 <div class="section" id="constructor">
 <h2>Constructor<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="Peripheral">
-<tt class="descname">Peripheral</tt><big>(</big><span class="optional">[</span><em>deviceAddress=None</em><span class="optional">[</span>, <em>addrType=ADDR_TYPE_PUBLIC</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#Peripheral" title="Permalink to this definition">¶</a></dt>
-<dd><p>If <em>deviceAddress</em> is not <tt class="docutils literal"><span class="pre">None</span></tt>, creates a <tt class="docutils literal"><span class="pre">Peripheral</span></tt> object and makes a connection
-to the device indicated by <em>deviceAddress</em> (which should be a string comprising six hex
-bytes separated by colons, e.g. <tt class="docutils literal"><span class="pre">&quot;11:22:33:ab:cd:ed&quot;</span></tt>).</p>
-<p>If <em>deviceAddress</em> is <tt class="docutils literal"><span class="pre">None</span></tt>, creates an un-connected <tt class="docutils literal"><span class="pre">Peripheral</span></tt> object. You must call the <tt class="docutils literal"><span class="pre">connect()</span></tt> method on this object (passing it a device address) before it will be usable.</p>
-<p>The <em>addrType</em> parameter can be used to select between fixed (<tt class="docutils literal"><span class="pre">btle.ADDR_TYPE_PUBLIC</span></tt>)
-and random (<tt class="docutils literal"><span class="pre">btle.ADDR_TYPE_RANDOM</span></tt>) address types, depending on what the target
+<code class="descname">Peripheral</code><span class="sig-paren">(</span><span class="optional">[</span><em>deviceAddress=None</em><span class="optional">[</span>, <em>addrType=ADDR_TYPE_PUBLIC</em><span class="optional">[</span>, <em>iface=None</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Peripheral" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <em>deviceAddress</em> is not <code class="docutils literal"><span class="pre">None</span></code>, creates a <code class="docutils literal"><span class="pre">Peripheral</span></code> object and makes a connection
+to the device indicated by <em>deviceAddress</em>. <em>deviceAddress</em> should be a string comprising six hex
+bytes separated by colons, e.g. <code class="docutils literal"><span class="pre">&quot;11:22:33:ab:cd:ed&quot;</span></code>.</p>
+<p>If <em>deviceAddress</em> is <code class="docutils literal"><span class="pre">None</span></code>, creates an un-connected <code class="docutils literal"><span class="pre">Peripheral</span></code> object. You must call the <code class="docutils literal"><span class="pre">connect()</span></code> method on this object (passing it a device address) before it will be usable.</p>
+<p>The <em>addrType</em> parameter can be used to select between fixed (<code class="docutils literal"><span class="pre">btle.ADDR_TYPE_PUBLIC</span></code>)
+and random (<code class="docutils literal"><span class="pre">btle.ADDR_TYPE_RANDOM</span></code>) address types, depending on what the target
 peripheral requires. See section 10.8 of the Bluetooth 4.0 specification for more
 details.</p>
-<p>The constructor will throw a <tt class="docutils literal"><span class="pre">BTLEException</span></tt> if connection to the device fails.</p>
+<p>The <em>iface</em> parameter allows the Bluetooth interface on which to make the connection to be set.
+On Linux, 0 means <em>/dev/hci0</em>, 1 means <em>/dev/hci1</em> and so on.</p>
+<p><em>deviceAddress</em> may also be a <code class="docutils literal"><span class="pre">ScanEntry</span></code> object. In this case the device address,
+address type, and interface number are all taken from the <code class="docutils literal"><span class="pre">ScanEntry</span></code> values, and
+the <em>addrType</em> and <em>iface</em> parameters are ignored.</p>
+<p>The constructor will throw a <code class="docutils literal"><span class="pre">BTLEException</span></code> if connection to the device fails.</p>
 </dd></dl>
 
 </div>
@@ -73,82 +78,134 @@ details.</p>
 <h2>Instance Methods<a class="headerlink" href="#instance-methods" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="connect">
-<tt class="descname">connect</tt><big>(</big><em>deviceAddress</em><big>)</big><a class="headerlink" href="#connect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Makes a connection to the device indicated by <em>deviceAddress</em>. You should only call
-this method if the <tt class="docutils literal"><span class="pre">Peripheral</span></tt> is un-connected (i.e. you did not pass a <em>deviceAddress</em>
+<code class="descname">connect</code><span class="sig-paren">(</span><em>deviceAddress</em><span class="optional">[</span>, <em>addrType=ADDR_TYPE_PUBLIC</em><span class="optional">[</span>, <em>iface=None</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a connection to the device indicated by <em>deviceAddress</em>, with address type
+<em>addrType</em> and interface number <em>iface</em> (see the <code class="docutils literal"><span class="pre">Peripheral</span></code> constructor for details).
+You should only call
+this method if the <code class="docutils literal"><span class="pre">Peripheral</span></code> is un-connected (i.e. you did not pass a <em>deviceAddress</em>
 to the constructor); a given peripheral object cannot be re-connected once connected.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="disconnect">
-<tt class="descname">disconnect</tt><big>(</big><big>)</big><a class="headerlink" href="#disconnect" title="Permalink to this definition">¶</a></dt>
+<code class="descname">disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#disconnect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Drops the connection to the device, and cleans up associated OS resources. Although the
-Python destructor for a <tt class="docutils literal"><span class="pre">Peripheral</span></tt> will attempt to call this method, you should not
+Python destructor for a <code class="docutils literal"><span class="pre">Peripheral</span></code> will attempt to call this method, you should not
 rely on this happening at any particular time. Therefore, always explicitly call
-<tt class="docutils literal"><span class="pre">disconnect()</span></tt> if you have finished communicating with a device.</p>
+<code class="docutils literal"><span class="pre">disconnect()</span></code> if you have finished communicating with a device.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="getServices">
-<tt class="descname">getServices</tt><big>(</big><big>)</big><a class="headerlink" href="#getServices" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of <tt class="docutils literal"><span class="pre">Service</span></tt> objects representing the services offered by the peripheral.
+<code class="descname">getServices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#getServices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of <code class="docutils literal"><span class="pre">Service</span></code> objects representing the services offered by the peripheral.
 This will perform Bluetooth service discovery if this has not already been done;
 otherwise it will return a cached list of services immediately.</p>
+<p>On Python 3.x, this returns a <em>dictionary view</em> object, not a list.</p>
 </dd></dl>
 
 <dl class="function">
-<dt>
-<tt class="descname">getServiceByUUID(uuidVal):</tt></dt>
-<dd><p>Returns an instance of a <tt class="docutils literal"><span class="pre">Service</span></tt> object which has the indicated UUID.
-<tt class="docutils literal"><span class="pre">uuidVal</span></tt> can be a <tt class="docutils literal"><span class="pre">UUID</span></tt> object, or any string or integer which can be
-used to construct a <tt class="docutils literal"><span class="pre">UUID</span></tt> object. The method will return immediately if the
+<dt id="getServiceByUUID">
+<code class="descname">getServiceByUUID</code><span class="sig-paren">(</span><em>uuidVal</em><span class="sig-paren">)</span><a class="headerlink" href="#getServiceByUUID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an instance of a <code class="docutils literal"><span class="pre">Service</span></code> object which has the indicated UUID.
+<code class="docutils literal"><span class="pre">uuidVal</span></code> can be a <code class="docutils literal"><span class="pre">UUID</span></code> object, or any string or integer which can be
+used to construct a <code class="docutils literal"><span class="pre">UUID</span></code> object. The method will return immediately if the
 service was previously discovered (e.g. by <em>getServices()</em>), and will query
 the peripheral otherwise. It raises a <em>BTLEEException</em> if the service is not
 found.</p>
 </dd></dl>
 
 <dl class="function">
-<dt>
-<tt class="descname">getCharacteristics(startHnd=1, endHnd=0xFFFF, uuid=None):</tt></dt>
-<dd><p>Returns a list containing <tt class="docutils literal"><span class="pre">Characteristic</span></tt> objects for the peripheral. If no
+<dt id="getCharacteristics">
+<code class="descname">getCharacteristics</code><span class="sig-paren">(</span><em>startHnd=1</em>, <em>endHnd=0xFFFF</em>, <em>uuid=None</em><span class="sig-paren">)</span><a class="headerlink" href="#getCharacteristics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list containing <code class="docutils literal"><span class="pre">Characteristic</span></code> objects for the peripheral. If no
 arguments are given, will return all characteristics. If <em>startHnd</em> and/or
 <em>endHnd</em> are given, the list is restricted to characteristics whose handles are
 within the given range - note that it&#8217;s usually more convenient to use
-<tt class="docutils literal"><span class="pre">Service.getCharacteristics()</span></tt> to get the characteristics associated with
+<code class="docutils literal"><span class="pre">Service.getCharacteristics()</span></code> to get the characteristics associated with
 a particular service. Alternatively, <em>uuid</em> may be specified to locate a
 characteristic with a particular UUID value. <em>uuid</em> may be any string, integer,
-or <tt class="docutils literal"><span class="pre">UUID</span></tt> type which can be used to construct a <tt class="docutils literal"><span class="pre">UUID</span></tt> object.</p>
+or <code class="docutils literal"><span class="pre">UUID</span></code> type which can be used to construct a <code class="docutils literal"><span class="pre">UUID</span></code> object.</p>
 <p>If no matching characteristics are found, returns an empty list.</p>
 </dd></dl>
 
 <dl class="function">
-<dt>
-<tt class="descname">getDescriptors(startHnd=1, endHnd=0xFFFF):</tt></dt>
-<dd><p>Returns a list containing <tt class="docutils literal"><span class="pre">Descriptor</span></tt> objects for the peripheral. If no
+<dt id="getDescriptors">
+<code class="descname">getDescriptors</code><span class="sig-paren">(</span><em>startHnd=1</em>, <em>endHnd=0xFFFF</em><span class="sig-paren">)</span><a class="headerlink" href="#getDescriptors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list containing <code class="docutils literal"><span class="pre">Descriptor</span></code> objects for the peripheral. If no
 arguments are given, will return all descriptors. If <em>startHnd</em> and/or
 <em>endHnd</em> are given, the list is restricted to descriptors whose handles are
 within the given range. Again, it&#8217;s usually more convenient to use
-<tt class="docutils literal"><span class="pre">Service.getDescriptors()</span></tt> to get the descriptors associated with
+<code class="docutils literal"><span class="pre">Service.getDescriptors()</span></code> to get the descriptors associated with
 a particular service.</p>
 <p>If no matching descriptors are found, returns an empty list.</p>
 </dd></dl>
 
 <dl class="function">
-<dt>
-<tt class="descname">setDelegate(delegate):</tt></dt>
+<dt id="withDelegate">
+<code class="descname">withDelegate</code><span class="sig-paren">(</span><em>delegate</em><span class="sig-paren">)</span><a class="headerlink" href="#withDelegate" title="Permalink to this definition">¶</a></dt>
 <dd><p>This stores a reference to a &#8220;delegate&#8221; object, which is called when asynchronous
 events such as Bluetooth notifications occur. This should be a subclass of the
-<tt class="docutils literal"><span class="pre">DefaultDelegate</span></tt> class. See <a class="reference internal" href="notifications.html#notifications"><em>Working with notifications</em></a> for more information.</p>
+<code class="docutils literal"><span class="pre">DefaultDelegate</span></code> class. See <a class="reference internal" href="notifications.html#notifications"><span>Working with notifications</span></a> for more information. This
+method returns the <code class="docutils literal"><span class="pre">Peripheral</span></code> object.</p>
 </dd></dl>
 
 <dl class="function">
-<dt>
-<tt class="descname">waitForNotifications(timeout):</tt></dt>
+<dt id="setDelegate">
+<code class="descname">setDelegate</code><span class="sig-paren">(</span><em>delegate</em><span class="sig-paren">)</span><a class="headerlink" href="#setDelegate" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>(deprecated since 0.9.10)</em> Same as <em>withDelegate()</em>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="waitForNotifications">
+<code class="descname">waitForNotifications</code><span class="sig-paren">(</span><em>timeout</em><span class="sig-paren">)</span><a class="headerlink" href="#waitForNotifications" title="Permalink to this definition">¶</a></dt>
 <dd><p>Blocks until a notification is received from the peripheral, or until the
 given <em>timeout</em> (in seconds) has elapsed. If a notification is received, the
-delegate object&#8217;s <tt class="docutils literal"><span class="pre">handleNotification()</span></tt> method will be called, and
-<tt class="docutils literal"><span class="pre">waitForNotifications()</span></tt> will then return <tt class="docutils literal"><span class="pre">True</span></tt>.</p>
-<p>If nothing is received before the timeout elapses, this will return <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+delegate object&#8217;s <code class="docutils literal"><span class="pre">handleNotification()</span></code> method will be called, and
+<code class="docutils literal"><span class="pre">waitForNotifications()</span></code> will then return <code class="docutils literal"><span class="pre">True</span></code>.</p>
+<p>If nothing is received before the timeout elapses, this will return <code class="docutils literal"><span class="pre">False</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="writeCharacteristic">
+<code class="descname">writeCharacteristic</code><span class="sig-paren">(</span><em>handle</em>, <em>val</em>, <em>withResponse=False</em><span class="sig-paren">)</span><a class="headerlink" href="#writeCharacteristic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the data <em>val</em> (of type <code class="docutils literal"><span class="pre">str</span></code> on Python 2.x, <code class="docutils literal"><span class="pre">byte</span></code> on 3.x) to the
+characteristic identified by handle <em>handle</em>, which should be an integer in the
+range 1 to 65535. This is useful if you know a characteristic&#8217;s GATT handle,
+but do not have a <code class="docutils literal"><span class="pre">Characteristic</span></code> object.</p>
+<p>If <em>withResponse</em> is true, will await confirmation that the write was successful
+from the device.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="readCharacteristic">
+<code class="descname">readCharacteristic</code><span class="sig-paren">(</span><em>handle</em><span class="sig-paren">)</span><a class="headerlink" href="#readCharacteristic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the current value of the characteristic identified by <em>handle</em>. This is
+useful if you know the handle for the characteristic but do not have a suitable
+<code class="docutils literal"><span class="pre">Characteristic</span></code> object.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<p>All the properties listed below are read-only.</p>
+<dl class="attribute">
+<dt id="addr">
+<code class="descname">addr</code><a class="headerlink" href="#addr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Device MAC address (as a hex string separated by colons).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="addrType">
+<code class="descname">addrType</code><a class="headerlink" href="#addrType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Device address type - one of <em>ADDR_TYPE_PUBLIC</em> or <em>ADDR_TYPE_RANDOM</em>; this will be a
+printable string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iface">
+<code class="descname">iface</code><a class="headerlink" href="#iface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bluetooth interface number (0 = <code class="docutils literal"><span class="pre">/dev/hci0</span></code>) used for the connection.</p>
 </dd></dl>
 
 </div>
@@ -158,29 +215,32 @@ delegate object&#8217;s <tt class="docutils literal"><span class="pre">handleNot
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">The <tt class="docutils literal"><span class="pre">Peripheral</span></tt> class</a><ul>
+<li><a class="reference internal" href="#">The <code class="docutils literal"><span class="pre">Peripheral</span></code> class</a><ul>
 <li><a class="reference internal" href="#constructor">Constructor</a></li>
 <li><a class="reference internal" href="#instance-methods">Instance Methods</a></li>
+<li><a class="reference internal" href="#properties">Properties</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter"><tt class="docutils literal"><span class="pre">bluepy</span></tt> - a Bluetooth LE interface for Python</a></p>
+                        title="previous chapter"><code class="docutils literal"><span class="pre">bluepy</span></code> - a Bluetooth LE interface for Python</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="uuid.html"
-                        title="next chapter">The <tt class="docutils literal"><span class="pre">UUID</span></tt> class</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/peripheral.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <p class="topless"><a href="scanner.html"
+                        title="next chapter">The <code class="docutils literal"><span class="pre">Scanner</span></code> class</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/peripheral.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -197,24 +257,24 @@ delegate object&#8217;s <tt class="docutils literal"><span class="pre">handleNot
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="uuid.html" title="The UUID class"
+          <a href="scanner.html" title="The Scanner class"
              >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="bluepy - a Bluetooth LE interface for Python"
              >previous</a> |</li>
-        <li><a href="index.html">bluepy 0.9.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">bluepy 0.9.11 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2014, Ian Harvey.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
     </div>
   </body>
 </html>
