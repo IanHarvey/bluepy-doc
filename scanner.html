@@ -130,7 +130,7 @@ all devices which have been discovered (since the last <em>clear()</em> call).</
 <div class="section" id="sample-code">
 <h2>Sample code<a class="headerlink" href="#sample-code" title="Permalink to this headline">¶</a></h2>
 <p>Basic code to run a LE device scan follows this example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">btle</span> <span class="kn">import</span> <span class="n">Scanner</span><span class="p">,</span> <span class="n">DefaultDelegate</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bluepy.btle</span> <span class="kn">import</span> <span class="n">Scanner</span><span class="p">,</span> <span class="n">DefaultDelegate</span>
 
 <span class="k">class</span> <span class="nc">ScanDelegate</span><span class="p">(</span><span class="n">DefaultDelegate</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -142,14 +142,16 @@ all devices which have been discovered (since the last <em>clear()</em> call).</
         <span class="k">elif</span> <span class="n">isNewData</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">&quot;Received new data from&quot;</span><span class="p">,</span> <span class="n">dev</span><span class="o">.</span><span class="n">addr</span>
 
+<span class="n">scanner</span> <span class="o">=</span> <span class="n">Scanner</span><span class="p">()</span><span class="o">.</span><span class="n">withDelegate</span><span class="p">(</span><span class="n">ScanDelegate</span><span class="p">())</span>
 <span class="n">devices</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">dev</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&quot;Device </span><span class="si">%s</span><span class="s"> (</span><span class="si">%s</span><span class="s">), RSSI=</span><span class="si">%d</span><span class="s"> dB&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dev</span><span class="o">.</span><span class="n">addr</span><span class="p">,</span> <span class="n">dev</span><span class="o">.</span><span class="n">atype</span><span class="p">,</span> <span class="n">dev</span><span class="o">.</span><span class="n">rssi</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;Device </span><span class="si">%s</span><span class="s"> (</span><span class="si">%s</span><span class="s">), RSSI=</span><span class="si">%d</span><span class="s"> dB&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dev</span><span class="o">.</span><span class="n">addr</span><span class="p">,</span> <span class="n">dev</span><span class="o">.</span><span class="n">addrType</span><span class="p">,</span> <span class="n">dev</span><span class="o">.</span><span class="n">rssi</span><span class="p">)</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">adtype</span><span class="p">,</span> <span class="n">desc</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dev</span><span class="o">.</span><span class="n">getScanData</span><span class="p">():</span>
         <span class="k">print</span> <span class="s">&quot;  </span><span class="si">%s</span><span class="s"> = </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">desc</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>NOTE that LE scanning must be run as root.</p>
 <p>See the documentation for <code class="docutils literal"><span class="pre">ScanEntry</span></code> for the information available via the <em>dev</em>
 parameter passed to the delegate.</p>
 </div>
